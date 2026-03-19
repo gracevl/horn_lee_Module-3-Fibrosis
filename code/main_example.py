@@ -21,59 +21,51 @@ filenames = [
 # Enter the depth of each image (in the same order that the images are listed above; you can find these in the .csv file provided to you which is tilted: "Filenames and Depths for Students")
 
 depths = [
-    15,
-    1000,
-    3000,
-    5300,
-    7000,
+    10000,
+    10000,
+    10000,
+    8100,
+    9900,
     9900
 ]
 
 # Make the lists that will be used
 
-images = []
 white_counts = []
 black_counts = []
 white_percents = []
 
+print(colored("Counts of pixel by color in each image", "yellow"))
+
 # Build the list of all the images you are analyzing
 
-for filename in filenames:
+for i, (filename, depth) in enumerate(zip(filenames, depths)):
     img = cv2.imread(filename, 0)
-    images.append(img)
 
-# For each image (until the end of the list of images), calculate the number of black and white pixels and make a list that contains this information for each filename.
+    #Make the image greyscale
+    _, binary = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
 
-for x in range(len(filenames)):
-    _, binary = cv2.threshold(images[x], 127, 255, cv2.THRESH_BINARY)
 
-    white = np.sum(binary == 255)
-    black = np.sum(binary == 0)
+    total = binary.size
+    white = int(np.sum(binary == 255))
+    black = total - white
+
+    white_pct = 100 * white/total
 
     white_counts.append(white)
     black_counts.append(black)
+    white_percents.append(white_pct)
 
-# Print the number of white and black pixels in each image.
-
-print(colored("Counts of pixel by color in each image", "yellow"))
-for x in range(len(filenames)):
-    print(colored(f"White pixels in image {x}: {white_counts[x]}", "white"))
-    print(colored(f"Black pixels in image {x}: {black_counts[x]}", "black"))
+    print(colored(f"White pixels in image {i}: {white}", "white"))
+    print(colored(f"Black pixels in image {i}: {black}", "black"))
     print()
 
-# Calculate the percentage of pixels in each image that are white and make a list that contains these percentages for each filename
-
-for x in range(len(filenames)):
-    white_percent = (
-        100 * (white_counts[x] / (black_counts[x] + white_counts[x])))
-    white_percents.append(white_percent)
-
-# Print the filename (on one line in red font), and below that line print the percent white pixels and depth into the lung where the image was obtained
-
 print(colored("Percent white px:", "yellow"))
-for x in range(len(filenames)):
-    print(colored(f'{filenames[x]}:', "red"))
-    print(f'{white_percents[x]}% White | Depth: {depths[x]} microns')
+
+for i, (filename, depth) in enumerate(zip(filenames, depths)):
+    
+    print(colored(f'{filenames[i]}:', "red"))
+    print(f'{white_percents[i]}% White | Depth: {depths[i]} microns')
     print()
 
 '''Write your data to a .csv file'''
