@@ -6,7 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 import pandas as pd
-
+import time
+start = time.time()
 # Load the images you want to analyze
 
 filenames = [
@@ -84,7 +85,8 @@ df.to_csv('Percent_White_Pixels.csv', index=False)
 print("The .csv file 'Percent_White_Pixels.csv' has been created.")
 
 '''the .csv writing subroutine ends here'''
-
+end = time.time()
+print(f"Total runtime: {end - start:.4f} seconds")
 
 ##############
 # LECTURE 2: UNCOMMENT BELOW
