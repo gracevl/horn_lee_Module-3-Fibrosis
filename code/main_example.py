@@ -17,6 +17,10 @@ filenames = [
     r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/6 images/MASK_SK658 Slobe ch010105.jpg",
     r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/6 images/MASK_SK658 Slobe ch010114.jpg",
     r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/6 images/MASK_SK658 Slobe ch010118.jpg",
+    r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/images/MASK_SK658 Slobe ch010093.jpg",
+    r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/images/MASK_SK658 Slobe ch010066.jpg",
+    r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/images/MASK_SK658 Slobe ch010110.jpg",
+    r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/images/MASK_SK658 Slobe ch010111.jpg"
 ]
 
 # Enter the depth of each image (in the same order that the images are listed above; you can find these in the .csv file provided to you which is tilted: "Filenames and Depths for Students")
@@ -27,7 +31,11 @@ depths = [
     10000,
     8100,
     9900,
-    9900
+    9900,
+    9300,
+    1000,
+    5300,
+    8600
 ]
 
 # Make the lists that will be used
@@ -93,45 +101,45 @@ print(f"Total runtime: {end - start:.4f} seconds")
 
 # # Interpolate a point: given a depth, find the corresponding white pixel percentage
 
-# interpolate_depth = float(input(colored(
-#     "Enter the depth at which you want to interpolate a point (in microns): ", "yellow")))
+interpolate_depth = float(input(colored(
+   "Enter the depth at which you want to interpolate a point (in microns): ", "yellow")))
 
-# x = depths
-# y = white_percents
+x = depths
+y = white_percents
 
 # # You can also use 'quadratic', 'cubic', etc.
-# i = interp1d(x, y, kind='linear')
-# interpolate_point = i(interpolate_depth)
-# print(colored(
-#     f'The interpolated point is at the x-coordinate {interpolate_depth} and y-coordinate {interpolate_point}.', "green"))
+i = interp1d(x, y, kind='linear')
+interpolate_point = i(interpolate_depth)
+print(colored(
+     f'The interpolated point is at the x-coordinate {interpolate_depth} and y-coordinate {interpolate_point}.', "green"))
 
-# depths_i = depths[:]
-# depths_i.append(interpolate_depth)
-# white_percents_i = white_percents[:]
-# white_percents_i.append(interpolate_point)
+depths_i = depths[:]
+depths_i.append(interpolate_depth)
+white_percents_i = white_percents[:]
+white_percents_i.append(interpolate_point)
 
 
 # # make two plots: one that doesn't contain the interpolated point, just the data calculated from your images, and one that also contains the interpolated point (shown in red)
-# fig, axs = plt.subplots(2, 1)
+fig, axs = plt.subplots(2, 1)
 
-# axs[0].scatter(depths, white_percents, marker='o', linestyle='-', color='blue')
-# axs[0].set_title('Plot of depth of image vs percentage white pixels')
-# axs[0].set_xlabel('depth of image (in microns)')
-# axs[0].set_ylabel('white pixels as a percentage of total pixels')
-# axs[0].grid(True)
+axs[0].scatter(depths, white_percents, marker='o', linestyle='-', color='blue')
+axs[0].set_title('Plot of depth of image vs percentage white pixels')
+axs[0].set_xlabel('depth of image (in microns)')
+axs[0].set_ylabel('white pixels as a percentage of total pixels')
+axs[0].grid(True)
 
 
-# axs[1].scatter(depths_i, white_percents_i, marker='o',
-#                linestyle='-', color='blue')
-# axs[1].set_title(
-#     'Plot of depth of image vs percentage white pixels with interpolated point (in red)')
-# axs[1].set_xlabel('depth of image (in microns)')
-# axs[1].set_ylabel('white pixels as a percentage of total pixels')
-# axs[1].grid(True)
-# axs[1].scatter(depths_i[len(depths_i)-1], white_percents_i[len(white_percents_i)-1],
-#                color='red', s=100, label='Highlighted point')
+axs[1].scatter(depths_i, white_percents_i, marker='o',
+                linestyle='-', color='blue')
+axs[1].set_title(
+     'Plot of depth of image vs percentage white pixels with interpolated point (in red)')
+axs[1].set_xlabel('depth of image (in microns)')
+axs[1].set_ylabel('white pixels as a percentage of total pixels')
+axs[1].grid(True)
+axs[1].scatter(depths_i[len(depths_i)-1], white_percents_i[len(white_percents_i)-1],
+                color='red', s=100, label='Highlighted point')
 
 
 # # Adjust layout to prevent overlap
-# plt.tight_layout()
-# plt.show()
+plt.tight_layout()
+plt.show()
