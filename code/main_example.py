@@ -12,30 +12,22 @@ start = time.time()
 
 filenames = [
     r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/6 images/MASK_SK658 Slobe ch010089.jpg",
-    r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/6 images/MASK_SK658 Slobe ch010092.jpg",
-    r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/6 images/MASK_SK658 Slobe ch010098.jpg",
     r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/6 images/MASK_SK658 Slobe ch010105.jpg",
-    r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/6 images/MASK_SK658 Slobe ch010114.jpg",
     r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/6 images/MASK_SK658 Slobe ch010118.jpg",
     r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/images/MASK_SK658 Slobe ch010093.jpg",
     r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/images/MASK_SK658 Slobe ch010066.jpg",
     r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/images/MASK_SK658 Slobe ch010110.jpg",
-    r"/Users/gracelee/Documents/computational BME/horn_lee_Module-3-Fibrosis/images/MASK_SK658 Slobe ch010111.jpg"
 ]
 
 # Enter the depth of each image (in the same order that the images are listed above; you can find these in the .csv file provided to you which is tilted: "Filenames and Depths for Students")
 
 depths = [
     10000,
-    10000,
-    10000,
     8100,
-    9900,
     9900,
     9300,
     1000,
     5300,
-    8600
 ]
 
 # Make the lists that will be used
